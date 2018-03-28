@@ -9,4 +9,4 @@ var model=mongoose.model('Product',
     lastUpdated:{type:Date,default:Date.now()}
 });
 
-module.exports=model;
+module.exports=model; 

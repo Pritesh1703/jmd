@@ -4,8 +4,11 @@ var productCtrl=require('../controllers/produts.ctrl');
 var router=express.Router();
 
 router.get('/',productCtrl.get);
+router.get('/:pageIndex/:pageSize',productCtrl.get);
 router.get('/:id',productCtrl.getById);
 router.post('/',productCtrl.save);
+router.put('/:id',productCtrl.update);
 router.delete('/:id',productCtrl.delete);
+
 
 module.exports=router;
