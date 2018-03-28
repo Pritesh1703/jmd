@@ -1,5 +1,6 @@
 var express=require('express');
 var bodyParser=require('body-parser');
+var mongoose=require('mongoose');
 var defaultRouter=require('./routes/default.router');
 var productsRouter=require('./routes/products.router');
 
@@ -8,6 +9,10 @@ var app=express();
 app.listen(3000,function(){
     console.log("Server is running on port 3000");
 });
+
+mongoose.connect("mongodb://admin:admin@ds223019.mlab.com:23019/myproductsdb");
+console.log("Connection to db succesfull");
+
 
 app.use(bodyParser.json());
 

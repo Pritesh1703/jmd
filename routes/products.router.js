@@ -6,5 +6,6 @@ var router=express.Router();
 router.get('/',productCtrl.get);
 router.get('/:id',productCtrl.getById);
 router.post('/',productCtrl.save);
+router.delete('/:id',productCtrl.delete);
 
 module.exports=router;
