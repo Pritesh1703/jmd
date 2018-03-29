@@ -3,6 +3,7 @@ var bodyParser=require('body-parser');
 var mongoose=require('mongoose');
 var defaultRouter=require('./routes/default.router');
 var productsRouter=require('./routes/products.router');
+var userRouter=require('./routes/user.router');
 
 var app=express();
 
@@ -18,3 +19,4 @@ app.use(bodyParser.json());
 
 app.use('/',defaultRouter);
 app.use('/api/products',productsRouter);
+app.use('/api/users',userRouter);

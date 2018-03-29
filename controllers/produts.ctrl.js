@@ -3,7 +3,7 @@ var Review=require('../models/review.model');
 
 module.exports={
     get:function(req,res){
-        console.log(req.query);
+    
         var count=0;
         var pageIndex= +req.params.pageIndex || 0;
         var pageSize= +req.params.pageSize || 2 ;   
@@ -41,7 +41,7 @@ module.exports={
         
                 if(product){
 
-                    Review.find({productId:id})
+                    Review.find({productId:id},{'__v':0})
                     .exec()
                     .then(function(reviews){
                         
