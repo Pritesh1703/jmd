@@ -8,7 +8,7 @@ module.exports={
         var pageIndex= +req.params.pageIndex || 0;
         var pageSize= +req.params.pageSize || 2 ;   
         var sortBy=req.query.sort || 'lastUpdated';
-        var sortDirection=(req.query.sortDirection).toLowerCase()==='asc'?"":"-";     
+        var sortDirection=req.query.sortDirection?(req.query.sortDirection).toLowerCase()==='asc'?"":"-":"-";     
 
         Product.count().exec()
         .then(function(cnt){
