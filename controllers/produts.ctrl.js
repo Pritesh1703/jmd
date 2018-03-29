@@ -1,4 +1,5 @@
 var Product = require('../models/product.model');
+var Review=require('../models/review.model');
 
 module.exports={
     get:function(req,res){
@@ -7,67 +8,53 @@ module.exports={
         var pageIndex= +req.params.pageIndex || 0;
         var pageSize= +req.params.pageSize || 2 ;       
 
-        Product.count(function(err,cnt){
+        Product.count().exec()
+        .then(function(cnt){
             count=cnt;
             var query=Product.find({},{'__v':0})
                 .skip(pageSize * pageIndex)
                 .limit(pageSize)
                 .sort("lastUpdated");
 
-            query.exec(function(err,products){
-                if(err){
-                    res.status(500);
-                    res.send(err);
-                }
-                else{
-                    var response={
-                        metadata:{totalRecords:count,numberOfPages:Math.ceil(count/pageSize)},
-                        data:products
-                    }
-                    res.status(200);
-                    res.json(response);
-                }
-               
-            })
-
-
-            // Product.find({},{'__v':0},function(err,products){
-            //     if(err){
-            //         res.status(500);
-            //         res.send(err);
-            //     }
-            //     else{
-            //         var response={
-            //             metadata:{totalRecords:count,numberOfPages:Math.ceil(count/pageSize)},
-            //             data:products
-            //         }
-            //         res.status(200);
-            //         res.json(response);
-            //     }
-               
-            // })
+            return query.exec();
+                     
         })
+        .then(function(products){
+            var response={
+             metadata:{totalRecords:count,numberOfPages:Math.ceil(count/pageSize)},
+             data:products
+         }
+         res.status(200);
+         res.json(response);   
+      })
+      .catch(function(err){console.log(err)});
 
-        
-       
+      
     },
     getById:function(req,res){
         var id = req.params.id;
-        Product.findById(id,{'__v':0},function(err,product){
-            if(!err){
+        Product.findById(id,{'__v':0})
+        .exec()
+        .then(function(product){
+        
                 if(product){
-                    res.status(200);
-                    res.json(product);
+
+                    Review.find({productId:id})
+                    .exec()
+                    .then(function(reviews){
+                        
+                        var jsonProduct=product.toJSON();
+                        jsonProduct.reviews=reviews;
+                        res.status(200);
+                        res.json(jsonProduct);
+                    })
+                   
                 }
                 else{
                     res.status(404);
                     res.send("Product Not found");
                 }               
-            }
-            else{               
-                res.status(500);
-                res.send(err);
-            }
+          
         })
        
     },
