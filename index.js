@@ -8,8 +8,10 @@ var isAuthenticated=require('./utilities/middleware');
 
 var app=express();
 
-app.listen(3000,function(){
-    console.log("Server is running on port 3000");
+var port=process.env.PORT || 3000 ;
+
+app.listen(port,function(){
+    console.log("Server is running on port:"+port);
 });
 
 mongoose.connect("mongodb://admin:admin@ds223019.mlab.com:23019/myproductsdb");
