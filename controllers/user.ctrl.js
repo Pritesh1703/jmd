@@ -30,31 +30,27 @@ module.exports={
         })
         
     },
-    signin:function(req,res){
+    signin:function(username,password,done){
 
-        User.findOne({username: req.body.username})
+        User.findOne({username: username})
         .exec()
         .then(function(user){
             if(user){
-                var result=bcrypt.compareSync(req.body.password,user.password);
+                var result=bcrypt.compareSync(password,user.password);
                 if(result){
-                    res.status(200);
-                    res.send("success");
+                    done(null);
                 }
                 else{
-                    res.status(401);
-                    res.send("unauthorized");
+                   done("Bad Credentials");
                 }
                 
             }
             else{
-                res.status(401);
-                res.send("unauthorized");
+                done("Bad Credentials");
             }
         })
         .catch(function(err){
-            res.status(401);
-            res.send("unauthorized");
+            done("Bad Credentials");
         })
         
     }

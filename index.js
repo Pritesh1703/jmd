@@ -4,6 +4,7 @@ var mongoose=require('mongoose');
 var defaultRouter=require('./routes/default.router');
 var productsRouter=require('./routes/products.router');
 var userRouter=require('./routes/user.router');
+var isAuthenticated=require('./utilities/middleware');
 
 var app=express();
 
@@ -18,5 +19,8 @@ console.log("Connection to db succesfull");
 app.use(bodyParser.json());
 
 app.use('/',defaultRouter);
+
+app.use(isAuthenticated);
+
 app.use('/api/products',productsRouter);
 app.use('/api/users',userRouter);
