@@ -22,6 +22,6 @@ app.use(bodyParser.json());
 
 app.use('/',defaultRouter);
 app.use('/api/users',userRouter);
-app.use(isAuthenticated);
+//app.use(isAuthenticated);
 
 app.use('/api/products',productsRouter);
