@@ -2,6 +2,7 @@ var User=require('../models/user.model');
 var bcrypt=require('bcrypt');
 var jwt=require('jsonwebtoken');
 var config=require('../utilities/config');
+var logger=require('../utilities/logger');
 
 module.exports={
     signup:function(req,res){
@@ -21,6 +22,7 @@ module.exports={
         .catch(function(err){
 
             if(err && err.errmsg && err.errmsg.indexOf("duplicate key error") > -1){
+                logger.error(err);
                 res.status(500);
                 res.send("UserName already exists.Please sign in");
             }

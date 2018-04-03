@@ -1,18 +1,20 @@
 var Product = require('../models/product.model');
 var Review=require('../models/review.model');
+var logger=require('../utilities/logger');
 
 module.exports={
     get:function(req,res){
     
         var count=0;
         var pageIndex= +req.params.pageIndex || 0;
-        var pageSize= +req.params.pageSize || 2 ;   
+        var pageSize= +req.params.pageSize || 5 ;   
         var sortBy=req.query.sort || 'lastUpdated';
         var sortDirection=req.query.sortDirection?(req.query.sortDirection).toLowerCase()==='asc'?"":"-":"-";     
 
         Product.count().exec()
         .then(function(cnt){
             count=cnt;
+            logger.info({message: "Fetched" + cnt + "Records"});
             var query=Product.find({},{'__v':0})
                 .skip(pageSize * pageIndex)
                 .limit(pageSize)

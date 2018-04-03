@@ -1,6 +1,9 @@
 var express=require('express');
 var bodyParser=require('body-parser');
 var mongoose=require('mongoose');
+var morgan=require('morgan');
+var fs=require('fs');
+
 var defaultRouter=require('./routes/default.router');
 var productsRouter=require('./routes/products.router');
 var userRouter=require('./routes/user.router');
@@ -17,8 +20,10 @@ app.listen(port,function(){
 mongoose.connect("mongodb://admin:admin@ds223019.mlab.com:23019/myproductsdb");
 console.log("Connection to db succesfull");
 
-
 app.use(bodyParser.json());
+
+var file=fs.createWriteStream(__dirname+"/logs/request.log",{flags:'a'});
+app.use(morgan('combined',{stream:file}));
 
 app.use('/',defaultRouter);
 app.use('/api/users',userRouter);

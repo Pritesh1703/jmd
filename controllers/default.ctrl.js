@@ -1,6 +1,6 @@
 var ctrl={
     get:function(req,res){
-        res.status(500)
+        res.status(200)
         .send("Hello Express");
     },
 
