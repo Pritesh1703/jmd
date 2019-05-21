@@ -3,6 +3,7 @@ var bodyParser=require('body-parser');
 var mongoose=require('mongoose');
 var morgan=require('morgan');
 var fs=require('fs');
+var cors=require('cors');
 
 var defaultRouter=require('./routes/default.router');
 var productsRouter=require('./routes/products.router');
@@ -10,6 +11,7 @@ var userRouter=require('./routes/user.router');
 var isAuthenticated=require('./utilities/middleware');
 
 var app=express();
+
 
 var port=process.env.PORT || 3000 ;
 
@@ -21,7 +23,7 @@ mongoose.connect("mongodb://admin:admin@ds223019.mlab.com:23019/myproductsdb");
 console.log("Connection to db succesfull");
 
 app.use(bodyParser.json());
-
+spp.use(cors());
 var file=fs.createWriteStream(__dirname+"/logs/request.log",{flags:'a'});
 app.use(morgan('combined',{stream:file}));
 
