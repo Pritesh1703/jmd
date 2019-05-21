@@ -27,3 +27,6 @@
 ::1 - - [14/Apr/2018:21:15:57 +0000] "POST /api/products/review HTTP/1.1" 201 209 "-" "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36"
 ::1 - - [14/Apr/2018:21:16:00 +0000] "GET /api/products/5ac3db42870f360aa49182ef HTTP/1.1" 200 759 "-" "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36"
 ::1 - - [14/Apr/2018:21:16:08 +0000] "GET /api/products/5ac3db42870f360aa49182ef HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36"
+::1 - - [21/May/2019:16:41:22 +0000] "GET / HTTP/1.1" 200 13 "-" "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36"
+::1 - - [21/May/2019:16:41:23 +0000] "GET /favicon.ico HTTP/1.1" 404 150 "http://localhost:3000/" "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36"
+::1 - - [21/May/2019:16:41:32 +0000] "GET /api/products HTTP/1.1" 200 744 "-" "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36"

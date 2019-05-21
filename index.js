@@ -23,7 +23,7 @@ mongoose.connect("mongodb://admin:admin@ds223019.mlab.com:23019/myproductsdb");
 console.log("Connection to db succesfull");
 
 app.use(bodyParser.json());
-spp.use(cors());
+app.use(cors());
 var file=fs.createWriteStream(__dirname+"/logs/request.log",{flags:'a'});
 app.use(morgan('combined',{stream:file}));
 
