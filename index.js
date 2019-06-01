@@ -30,6 +30,9 @@ app.use(morgan('combined',{stream:file}));
 
 app.use('/',defaultRouter);
 app.use('/api/users',userRouter);
-//app.use(isAuthenticated);
+
+//for authentication of products
+app.use(isAuthenticated);
+
 
 app.use('/api/products',productsRouter);
